@@ -17,6 +17,7 @@ def get_random_account() -> Credentials | None:
     except IndexError:
         logger.exception("No accounts provided in accounts.txt")
         return None
+
     random_account = accounts[random_index].split(":")
     return Credentials(
         email=random_account[0], username=random_account[1], password=random_account[2]
@@ -30,6 +31,7 @@ def login_to_x(scraper: Xtractor) -> None:
             "No accounts found in accounts.txt. Be sure to load this file in the root directory with valid account credentials."
         )
         return
+
     cookies_path = os.path.join(
         os.path.dirname(__file__), "cookies", f"{random_account.username}.pkl"
     )
